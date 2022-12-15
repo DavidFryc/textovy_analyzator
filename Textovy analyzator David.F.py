@@ -1,6 +1,6 @@
 """
 projekt_1.py: první projekt do Engeto Online Python Akademie
-author: Petr Svetr
-email: petr.svetr@gmail.com
-discord: Petr Svetr#4490
+author: David Fryc
+email: df@emd.dk
+discord: David F.#2019
 """
