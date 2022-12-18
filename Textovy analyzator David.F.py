@@ -53,24 +53,21 @@ if users.get(username) == password:
     print("3 - Text 3")
     print(cara)
     
-    vybrany_text = int(input("Vybrany text: ".upper()))
-    text = (texty[(int(vybrany_text))-1])
+    text = int(input("Vybrany text: ".upper()))
+    #nalezeny_text = int(texty[(int(text))-1])
 
-    #print (text)
+    #print(vybrany_text)
+    #print(text)
     
-    # #for text in range 
-    if int(text) >= 0 and int(text) < 4:
+    #for text in range (0,4):
+    if int(text)-1 >= 0 and int(text)-1 <= 3:
     #if text in texts[text]:
         print(text)
         print(f"Budeme analyzovat text cislo {int(text)}")
+        #print(nalezeny_text)
         print(cara)
     else:
         print("tohle nepujde")
-
-
-
-
-
 
 else:
     print("Bohuzel, zadane uzivatelske jmeno nebo heslo nejsou v databazi, ukoncuji...")
