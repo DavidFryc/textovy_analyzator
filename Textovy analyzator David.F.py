@@ -77,4 +77,5 @@ if users.get(username) == password:
 else:
     print("Bohuzel, zadane uzivatelske jmeno nebo heslo nejsou v databazi, ukoncuji...")
 
-    ## paty pokus z EMD pocitace12
+    # Synchroniza z EMD pocitace s git proste nefunguje. Ale kdyz si necham Git jen na jednom pocitaci, 
+    # tak se to synchronizuje mezi obema spravne a pak to muzu poslat do git jen z jednoho. Ted CTRL+S
