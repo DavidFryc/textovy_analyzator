@@ -62,8 +62,8 @@ if users.get(username) == password:
     #for text in range (0,4):
     if int(text) >= 0 and int(text) < 3:
         print(f"Budeme analyzovat text cislo {int(text+1)}")
-        print(texty[text])                                      #misto tohohle textu prijde cela ta statistika
-                                                                #Pro vybraný text spočítá následující statistiky:
+        #print(texty[text])                                      #misto tohohle textu prijde cela ta statistika
+        print (str((texty[(text)]).count("a")))                         #Pro vybraný text spočítá následující statistiky:
                                                                 #počet slov,
                                                                 #počet slov začínajících velkým písmenem,
                                                                 #počet slov psaných velkými písmeny,
