@@ -53,21 +53,26 @@ if users.get(username) == password:
     print("3 - Text 3")
     print(cara)
     
-    text = int(input("Vybrany text: ".upper()))
+    text = -1+ int(input("Vybrany text: ".upper()))
     #nalezeny_text = int(texty[(int(text))-1])
 
     #print(vybrany_text)
     #print(text)
     
     #for text in range (0,4):
-    if int(text)-1 >= 0 and int(text)-1 <= 3:
-    #if text in texts[text]:
-        print(text)
-        print(f"Budeme analyzovat text cislo {int(text)}")
-        #print(nalezeny_text)
+    if int(text) >= 0 and int(text) < 3:
+        print(f"Budeme analyzovat text cislo {int(text+1)}")
+        print(texty[text])                                      #misto tohohle textu prijde cela ta statistika
+                                                                #Pro vybraný text spočítá následující statistiky:
+                                                                #počet slov,
+                                                                #počet slov začínajících velkým písmenem,
+                                                                #počet slov psaných velkými písmeny,
+                                                                #počet slov psaných malými písmeny,
+                                                                #počet čísel (ne cifer),
+                                                                #sumu všech čísel (ne cifer) v textu.
         print(cara)
     else:
-        print("tohle nepujde")
+        print("Zadane cislo se nenachazi v databazi, ukoncuji".upper())
 
 else:
     print("Bohuzel, zadane uzivatelske jmeno nebo heslo nejsou v databazi, ukoncuji...")
