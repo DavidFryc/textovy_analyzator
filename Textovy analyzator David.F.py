@@ -77,4 +77,4 @@ if users.get(username) == password:
 else:
     print("Bohuzel, zadane uzivatelske jmeno nebo heslo nejsou v databazi, ukoncuji...")
 
-    ## paty pokus z EMD pocitace
+    ## paty pokus z EMD pocitace12
