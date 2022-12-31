@@ -38,11 +38,13 @@ users = {
 "liz":"pass123"
 }
 cara = 60*"-"
-
+cisla = ('0123456789')
 #print (users)
 
 username = input("Zadej uzivatelske jmeno: ".upper()).casefold()
 password = input("Zadej heslo: ".upper())
+
+vysledek = {'pocet slov':0, 'prvni velke':0, 'vsechna velka':0, 'vsechna mala':0, "pocet cisel":0 }
 
 if users.get(username) == password:
     print(cara)
@@ -53,17 +55,54 @@ if users.get(username) == password:
     print("3 - Text 3")
     print(cara)
     
-    text = -1+ int(input("Vybrany text: ".upper()))
-    #nalezeny_text = int(texty[(int(text))-1])
-
-    #print(vybrany_text)
-    #print(text)
+    text = int(input("Vybrany text: ".upper()))-1
     
+       
     #for text in range (0,4):
     if int(text) >= 0 and int(text) < 3:
-        print(f"Budeme analyzovat text cislo {int(text+1)}")
-        #print(texty[text])                                      #misto tohohle textu prijde cela ta statistika
-        print (str((texty[(text)]).count("a")))                         #Pro vybraný text spočítá následující statistiky:
+        vybrany_text = texty[text]
+        print(f"Budeme analyzovat text cislo {int(text+1)}: ")
+        print (cara)
+        print (vybrany_text)
+        pocet_vseho = len(texty[text].split())
+        print(pocet_vseho)
+
+        split_text = texty[text].split()
+        print (split_text)
+        
+        for pocetslov in split_text:
+            if pocetslov.isalpha() is True:
+                vysledek ['pocet slov'] +=1
+            else:
+                continue
+        
+        for prvnivelke in split_text:
+            if prvnivelke.istitle() is True:
+                vysledek ['prvni velke'] +=1
+            else:
+                continue
+
+        for vsechnavelka in split_text:
+            if vsechnavelka.isupper() is True:
+                vysledek ['vsechna velka'] +=1
+            else: 
+                continue
+
+        for vsechnamala in split_text:
+            if vsechnamala.islower() is True:
+                vysledek ['vsechna mala'] +=1
+            else: 
+                continue
+
+        for cislo in split_text:
+            if cislo.isdigit() is True:
+                vysledek ['pocet cisel'] +=1
+            else:
+                continue
+    
+        print (vysledek)
+  
+  
                                                                 #počet slov,
                                                                 #počet slov začínajících velkým písmenem,
                                                                 #počet slov psaných velkými písmeny,
