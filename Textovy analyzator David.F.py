@@ -38,37 +38,38 @@ users = {
 "liz":"pass123"
 }
 cara = 60*"-"
-cisla = ('0123456789')
+#cisla = ('0123456789')
 #print (users)
+soucet = 0
 
-username = input("Zadej uzivatelske jmeno: ".upper()).casefold()
-password = input("Zadej heslo: ".upper())
+username = input("Enter your user name:\t".upper()).casefold()
+password = input("Enter your password:\t".upper())
 
 vysledek = {'pocet slov':0, 'prvni velke':0, 'vsechna velka':0, 'vsechna mala':0, "pocet cisel":0 }
 
 if users.get(username) == password:
     print(cara)
-    print("Vitej v aplikaci,", username.title())
-    print("K analyze jsou k dispozici tri texty:")
+    print("Welcome in app,", username.title())
+    print("We have 3 texts to be analyzed:")
     print("1 - Text 1")
     print("2 - Text 2")
     print("3 - Text 3")
     print(cara)
     
-    text = int(input("Vybrany text: ".upper()))-1
+    text = int(input("Selected text: ".upper()))-1
     
        
     #for text in range (0,4):
     if int(text) >= 0 and int(text) < 3:
         vybrany_text = texty[text]
-        print(f"Budeme analyzovat text cislo {int(text+1)}: ")
+        #print(f"Selected text: {int(text+1)}")
         print (cara)
-        print (vybrany_text)
+        #print (vybrany_text)
         pocet_vseho = len(texty[text].split())
-        print(pocet_vseho)
+        #print(pocet_vseho)
 
         split_text = texty[text].split()
-        print (split_text)
+        #print (split_text)
         
         for pocetslov in split_text:
             if pocetslov.isalpha() is True:
@@ -97,24 +98,41 @@ if users.get(username) == password:
         for cislo in split_text:
             if cislo.isdigit() is True:
                 vysledek ['pocet cisel'] +=1
+                soucet = soucet + int(cislo)
             else:
                 continue
-    
-        print (vysledek)
-  
-  
-                                                                #počet slov,
-                                                                #počet slov začínajících velkým písmenem,
-                                                                #počet slov psaných velkými písmeny,
-                                                                #počet slov psaných malými písmeny,
-                                                                #počet čísel (ne cifer),
-                                                                #sumu všech čísel (ne cifer) v textu.
+        
+        pocet_vyskytu = []
+        vyskytu_celkem = {}
+        for pocet in split_text:
+            pocet_vyskytu.append(len(pocet))
+        for pocet_vysledek in pocet_vyskytu:
+            if pocet_vysledek not in vyskytu_celkem:
+                vyskytu_celkem[pocet_vysledek] = 1
+            else:
+                vyskytu_celkem[pocet_vysledek] = vyskytu_celkem[pocet_vysledek] + 1
+
+        #print (vysledek)
+        print ("There are", vysledek['pocet slov'],"words in the selected text.")
+        print ("There are", vysledek['prvni velke'],"titlecase words.")
+        print ("There are", vysledek['vsechna velka'],"uppercase words.")
+        print ("There are", vysledek['vsechna mala'],"lowercase words.")
+        print ("There are", vysledek['pocet cisel'],"numeric strings.")
+        print ("The sum of all the numbers is", soucet)
+        print(cara)
+        print("LEN \t| COUNT\t| OCCURENCES.")
+
+        for key, value in sorted(vyskytu_celkem.items()):
+            print (key,"\t|", value,"\t|", "*"*value)
         print(cara)
     else:
-        print("Zadane cislo se nenachazi v databazi, ukoncuji".upper())
+        print (cara)
+        print("Selected number is not in the database, terminating.".upper())
+        print (cara)
+    quit()
 
 else:
-    print("Bohuzel, zadane uzivatelske jmeno nebo heslo nejsou v databazi, ukoncuji...")
-
-    # Synchroniza z EMD pocitace s git proste nefunguje. Ale kdyz si necham Git jen na jednom pocitaci, 
-    # tak se to synchronizuje mezi obema spravne a pak to muzu poslat do git jen z jednoho. Ted CTRL+S
+    print (cara)
+    print("Our deepest apology, unknown user name or password. Terminating...".upper())
+    print (cara)
+quit()
