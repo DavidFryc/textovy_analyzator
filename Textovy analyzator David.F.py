@@ -38,14 +38,14 @@ users = {
 "liz":"pass123"
 }
 cara = 60*"-"
-#cisla = ('0123456789')
-#print (users)
 soucet = 0
 
 username = input("Enter your user name:\t".upper()).casefold()
 password = input("Enter your password:\t".upper())
 
 vysledek = {'pocet slov':0, 'prvni velke':0, 'vsechna velka':0, 'vsechna mala':0, "pocet cisel":0 }
+
+# KONTROLA USER NAME A PASSWORD
 
 if users.get(username) == password:
     print(cara)
@@ -55,27 +55,22 @@ if users.get(username) == password:
     print("2 - Text 2")
     print("3 - Text 3")
     print(cara)
-    
     text = int(input("Selected text: ".upper()))-1
     
-       
-    #for text in range (0,4):
+    #VYBER TEXTU
+
     if int(text) >= 0 and int(text) < 3:
         vybrany_text = texty[text]
-        #print(f"Selected text: {int(text+1)}")
         print (cara)
-        #print (vybrany_text)
-        pocet_vseho = len(texty[text].split())
-        #print(pocet_vseho)
-
-        split_text = texty[text].split()
-        #print (split_text)
+        pocet_vseho = len(texty[text].split())         
         
-        for pocetslov in split_text:
-            if pocetslov.isalpha() is True:
-                vysledek ['pocet slov'] +=1
-            else:
-                continue
+        split_text = texty[text].split()
+                
+        # for pocetslov in split_text:               #neni potreba, nezapocita slova koncici "." nebo ","
+        #     if pocetslov.isalpha() is True:
+        #         vysledek ['pocet slov'] +=1
+        #     else:
+        #         continue
         
         for prvnivelke in split_text:
             if prvnivelke.istitle() is True:
@@ -113,7 +108,9 @@ if users.get(username) == password:
                 vyskytu_celkem[pocet_vysledek] = vyskytu_celkem[pocet_vysledek] + 1
 
         #print (vysledek)
-        print ("There are", vysledek['pocet slov'],"words in the selected text.")
+        #print(pocet_vseho)
+        print ("There are", pocet_vseho - vysledek['pocet cisel'],"words in the selected text.")
+        #print ("There are", vysledek['pocet slov'],"words in the selected text.")
         print ("There are", vysledek['prvni velke'],"titlecase words.")
         print ("There are", vysledek['vsechna velka'],"uppercase words.")
         print ("There are", vysledek['vsechna mala'],"lowercase words.")
