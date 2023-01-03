@@ -38,98 +38,99 @@ users = {
 "liz":"pass123"
 }
 cara = 60*"-"
+
+# VYSLEDKOVE PROMENNE
 soucet = 0
-
-username = input("Enter your user name:\t".upper()).casefold()
-password = input("Enter your password:\t".upper())
-
-vysledek = {'pocet slov':0, 'prvni velke':0, 'vsechna velka':0, 'vsechna mala':0, "pocet cisel":0 }
+vysledek = {
+    'pocet slov':0, 'prvni velke':0, 'vsechna velka':0,
+    'vsechna mala':0, "pocet cisel":0 }
 
 # KONTROLA USER NAME A PASSWORD
+username = input('Enter your user name:\t'.upper()).casefold()
+password = input('Enter your password:\t'.upper())
 
 if users.get(username) == password:
     print(cara)
-    print("Welcome in app,", username.title())
-    print("We have 3 texts to be analyzed:")
-    print("1 - Text 1")
-    print("2 - Text 2")
-    print("3 - Text 3")
+    print('Welcome in app,', username.title())
+    print('We have 3 texts to be analyzed: ')
+    print('1 - Text 1')
+    print('2 - Text 2')
+    print('3 - Text 3')
     print(cara)
-    text = int(input("Selected text: ".upper()))-1
+    text = int(input('Selected text: '.upper()))-1
+        
+    if text == str() is True:
+        print('String instead of number entered'.upper())
+        quit()
+     
     
     #VYBER TEXTU
+    elif int(text) >= 0 and int(text) < 3:
+        print(cara)
+        
+        #OCISTENI TEXTU O ".", "," A "-".          
+        cisty_text = texty[int(text)].replace(",","").replace(".", "").replace("-", " ")     
+                                #Tohle jde urcite vyresit elegantneji
+        #PREVEDENI NA LIST
+        split_text = cisty_text.split()
 
-    if int(text) >= 0 and int(text) < 3:
-        vybrany_text = texty[text]
-        print (cara)
-        pocet_vseho = len(texty[text].split())         
-        
-        split_text = texty[text].split()
-                
-        # for pocetslov in split_text:               #neni potreba, nezapocita slova koncici "." nebo ","
-        #     if pocetslov.isalpha() is True:
-        #         vysledek ['pocet slov'] +=1
-        #     else:
-        #         continue
-        
+        #VYHLEDAVANI SLOV PODLE RUZNYCH KRITERII
+        for pocetslov in split_text:
+            if pocetslov.isalpha():
+                vysledek['pocet slov'] +=1
         for prvnivelke in split_text:
-            if prvnivelke.istitle() is True:
-                vysledek ['prvni velke'] +=1
-            else:
-                continue
-
+            if prvnivelke.istitle():
+                vysledek['prvni velke'] +=1
         for vsechnavelka in split_text:
-            if vsechnavelka.isupper() is True:
-                vysledek ['vsechna velka'] +=1
-            else: 
-                continue
-
+            if vsechnavelka.isupper():
+                vysledek['vsechna velka'] +=1
         for vsechnamala in split_text:
-            if vsechnamala.islower() is True:
-                vysledek ['vsechna mala'] +=1
-            else: 
-                continue
-
+            if vsechnamala.islower():
+                vysledek['vsechna mala'] +=1
         for cislo in split_text:
-            if cislo.isdigit() is True:
-                vysledek ['pocet cisel'] +=1
+            if cislo.isdigit():
+                vysledek['pocet cisel'] +=1
                 soucet = soucet + int(cislo)
-            else:
-                continue
         
+        #VYPOCET SOUCTU
         pocet_vyskytu = []
         vyskytu_celkem = {}
         for pocet in split_text:
-            pocet_vyskytu.append(len(pocet))
+            pocet_vyskytu.append(len(pocet))            
+                    #vytvori list s delkami jednotlivych stringu
         for pocet_vysledek in pocet_vyskytu:
-            if pocet_vysledek not in vyskytu_celkem:
+            if pocet_vysledek not in vyskytu_celkem:    
+                    #pokud zjisteny pocet neexistuje, vytvor ho do setu.
                 vyskytu_celkem[pocet_vysledek] = 1
             else:
-                vyskytu_celkem[pocet_vysledek] = vyskytu_celkem[pocet_vysledek] + 1
-
-        #print (vysledek)
-        #print(pocet_vseho)
-        print ("There are", pocet_vseho - vysledek['pocet cisel'],"words in the selected text.")
-        #print ("There are", vysledek['pocet slov'],"words in the selected text.")
-        print ("There are", vysledek['prvni velke'],"titlecase words.")
-        print ("There are", vysledek['vsechna velka'],"uppercase words.")
-        print ("There are", vysledek['vsechna mala'],"lowercase words.")
-        print ("There are", vysledek['pocet cisel'],"numeric strings.")
-        print ("The sum of all the numbers is", soucet)
+                vyskytu_celkem[pocet_vysledek] += 1     
+                    #pokud uz existuje, pridej count jedna. 
+                    
+        #PRINT VYSLEDKU
+        print("There are", vysledek['pocet slov'],"words in the selected text.")
+        print('There are', vysledek['prvni velke'],'titlecase words.')
+        print('There are', vysledek['vsechna velka'],'uppercase words.')
+        print('There are', vysledek['vsechna mala'],'lowercase words.')
+        print('There are', vysledek['pocet cisel'],'numeric strings.')
+        print('The sum of all the numbers is', soucet)
         print(cara)
-        print("LEN \t| COUNT\t| OCCURENCES.")
 
+        #PRINT GRAFU
+        print('LEN \t| COUNT\t| OCCURENCES')
         for key, value in sorted(vyskytu_celkem.items()):
-            print (key,"\t|", value,"\t|", "*"*value)
+            print (key,'\t|', value,'\t|', '*'*value)       
+                #Count a Occurence jsou otocene, jinak mi to vyjde vzdy rozhazene :/
         print(cara)
+    #elif text is str():
+        #print('String instead of number entered'.upper())
     else:
-        print (cara)
-        print("Selected number is not in the database, terminating.".upper())
-        print (cara)
+        print(cara)
+        print('Selected number is not in the database, terminating.'.upper())
+        print(cara)
     quit()
 
 else:
     print (cara)
-    print("Our deepest apology, unknown user name or password. Terminating...".upper())
+    print('Our deepest apology, unknown user name or password. Terminating...'.upper())
     print (cara)
 quit()
