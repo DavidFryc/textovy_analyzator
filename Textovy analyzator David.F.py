@@ -46,6 +46,7 @@ vysledek = {
     'vsechna mala':0, "pocet cisel":0 }
 
 # KONTROLA USER NAME A PASSWORD
+print(cara)
 username = input('Enter your user name:\t'.upper()).casefold()
 password = input('Enter your password:\t'.upper())
 
@@ -57,19 +58,21 @@ if users.get(username) == password:
     print('2 - Text 2')
     print('3 - Text 3')
     print(cara)
-    text = int(input('Selected text: '.upper()))-1
-        
-    if text == str() is True:
-        print('String instead of number entered'.upper())
+    text = input('Selected text: '.upper())
+
+    #UKONCENI APLIKACE, POKUD UZIVATEL ZADA NECO JINEHO, NEZ CISLO
+    if not text.isdigit():
+        print(cara)
+        print('You entered either a number or a symbol. Terminating.'.upper())
+        print(cara)
         quit()
-     
-    
+
     #VYBER TEXTU
-    elif int(text) >= 0 and int(text) < 3:
+    elif int(text) >= 1 and int(text) <= 3:
         print(cara)
         
         #OCISTENI TEXTU O ".", "," A "-".          
-        cisty_text = texty[int(text)].replace(",","").replace(".", "").replace("-", " ")     
+        cisty_text = texty[int(text)-1].replace(",","").replace(".", "").replace("-", " ")     
                                 #Tohle jde urcite vyresit elegantneji
         #PREVEDENI NA LIST
         split_text = cisty_text.split()
@@ -99,9 +102,9 @@ if users.get(username) == password:
             pocet_vyskytu.append(len(pocet))            
                     #vytvori list s delkami jednotlivych stringu
         for pocet_vysledek in pocet_vyskytu:
-            if pocet_vysledek not in vyskytu_celkem:    
-                    #pokud zjisteny pocet neexistuje, vytvor ho do setu.
+            if pocet_vysledek not in vyskytu_celkem:                    
                 vyskytu_celkem[pocet_vysledek] = 1
+                    #pokud zjisteny pocet v setu neexistuje, vytvori ho.
             else:
                 vyskytu_celkem[pocet_vysledek] += 1     
                     #pokud uz existuje, pridej count jedna. 
